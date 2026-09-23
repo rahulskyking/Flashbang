@@ -4,8 +4,8 @@ Premium single-page static website for **FLASHBANG MEDIA PRIVATE LIMITED**
 (CIN: U59111WB2026PTC286335) — a gaming ecosystem spanning media, community,
 careers and events.
 
-**Ecosystem:** GameTout (gaming media / YouTube) · TheGameVoice (news &
-editorial) · HireGameDev (upcoming careers platform).
+**Products:** GameTout (gaming media / YouTube) · TheGameVoice (gaming news &
+editorial). Contact: contact@flashbangmedia.com
 
 ## Stack
 
