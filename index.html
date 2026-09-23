@@ -25,6 +25,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    // Set theme before paint to avoid flash. Default: light (yellow/white).
+    (function () {
+      try {
+        var t = localStorage.getItem("fb-theme");
+        if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) { document.documentElement.setAttribute("data-theme", "light"); }
+    })();
+  </script>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -69,11 +79,16 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <a href="#ecosystem" class="btn btn--accent nav__cta">Explore Ecosystem</a>
-
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <a href="#ecosystem" class="btn btn--accent nav__cta">Explore Ecosystem</a>
+        <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
     <div class="mobile-menu" id="mobileMenu" hidden>
@@ -92,6 +107,7 @@
     <section class="hero" id="hero">
       <div class="hero__bg" id="heroBg"></div>
       <div class="hero__overlay"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
       <div class="container hero__content">
         <span class="kicker reveal" id="heroKicker"></span>
         <h1 class="hero__title reveal" id="heroTitle"></h1>
@@ -102,7 +118,6 @@
         </div>
         <div class="hero__brands reveal" id="heroBrands"></div>
       </div>
-      <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
     </section>
 
     <!-- ===================== WHAT IS FLASHBANG ===================== -->

@@ -54,8 +54,10 @@
       var arrow = soon ? "" : " →";
       return (
         '<article class="eco-card reveal">' +
-          '<div class="eco-card__img" style="background-image:url(\'' + c.image + "')\"></div>" +
-          (soon ? '<span class="badge-soon">Coming Soon</span>' : "") +
+          '<div class="eco-card__media">' +
+            '<img loading="lazy" src="' + c.image + '" alt="' + esc(c.name) + '">' +
+            (soon ? '<span class="badge-soon">Coming Soon</span>' : "") +
+          "</div>" +
           '<div class="eco-card__body">' +
             '<span class="eco-card__cat' + (soon ? " soon" : "") + '">' + esc(c.category) + "</span>" +
             '<h3 class="eco-card__name">' + esc(c.name) + "</h3>" +
@@ -223,6 +225,17 @@
     }).join("");
   }
   $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- THEME TOGGLE ---------- */
+  var themeBtn = $("#themeToggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      var next = cur === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("fb-theme", next); } catch (e) {}
+    });
+  }
 
   /* ---------- NAV: scroll state + mobile menu + active links ---------- */
   var nav = $("#nav");
