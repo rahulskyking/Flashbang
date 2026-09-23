@@ -5,21 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FLASHBANG MEDIA — Gaming Media, Community, Careers &amp; Events</title>
   <meta name="description" content="FLASHBANG MEDIA is a gaming ecosystem connecting media, community, careers and events through GameTout, TheGameVoice and upcoming gaming initiatives." />
-  <meta name="theme-color" content="#0a0a0b" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
 
-  <!-- Open Graph / Social -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FLASHBANG MEDIA" />
   <meta property="og:title" content="FLASHBANG MEDIA — Gaming Media, Community, Careers & Events" />
   <meta property="og:description" content="A gaming ecosystem connecting media, community, careers and events through GameTout, TheGameVoice and upcoming gaming initiatives." />
   <meta property="og:image" content="assets/img/hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FLASHBANG MEDIA — Gaming Ecosystem" />
-  <meta name="twitter:description" content="Gaming media, community, careers and events. GameTout • TheGameVoice • HireGameDev." />
-  <meta name="twitter:image" content="assets/img/hero.jpg" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -36,7 +31,6 @@
     })();
   </script>
 
-  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,14 +44,6 @@
     "address": { "@type": "PostalAddress", "addressCountry": "IN" }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "FLASHBANG MEDIA",
-    "url": "https://flashbangmedia.in"
-  }
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#hero">Skip to content</a>
@@ -66,16 +52,14 @@
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a class="brand" href="#hero" aria-label="FLASHBANG home">
-        <img src="assets/img/logo.png" alt="" class="brand__mark" width="34" height="34" />
+        <img src="assets/img/logo.png" alt="" class="brand__mark" width="30" height="30" />
         <span class="brand__name">FLASHBANG</span>
       </a>
 
       <nav class="nav__links" aria-label="Primary">
-        <a href="#hero">Home</a>
         <a href="#about">About</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#events">Events</a>
-        <a href="#media">Media</a>
+        <a href="#products">Products</a>
+        <a href="#videos">Videos</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -84,7 +68,7 @@
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         </button>
-        <a href="#ecosystem" class="btn btn--accent nav__cta">Explore Ecosystem</a>
+        <a href="#products" class="btn btn--accent nav__cta">Explore Products</a>
         <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>
@@ -92,13 +76,11 @@
     </div>
 
     <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#hero">Home</a>
       <a href="#about">About</a>
-      <a href="#ecosystem">Ecosystem</a>
-      <a href="#events">Events</a>
-      <a href="#media">Media</a>
+      <a href="#products">Products</a>
+      <a href="#videos">Videos</a>
       <a href="#contact">Contact</a>
-      <a href="#ecosystem" class="btn btn--accent">Explore Ecosystem</a>
+      <a href="#products" class="btn btn--accent">Explore Products</a>
     </div>
   </header>
 
@@ -109,113 +91,25 @@
       <div class="hero__overlay"></div>
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="container hero__content">
-        <span class="kicker reveal" id="heroKicker"></span>
-        <h1 class="hero__title reveal" id="heroTitle"></h1>
-        <p class="hero__subtitle reveal" id="heroSubtitle"></p>
-        <div class="hero__actions reveal">
+        <span class="kicker" id="heroKicker"></span>
+        <h1 class="hero__title" id="heroTitle"></h1>
+        <p class="hero__subtitle" id="heroSubtitle"></p>
+        <div class="hero__actions">
           <a class="btn btn--accent" id="heroPrimary"></a>
           <a class="btn btn--ghost" id="heroSecondary"></a>
         </div>
-        <div class="hero__brands reveal" id="heroBrands"></div>
+        <div class="hero__brands" id="heroBrands"></div>
       </div>
     </section>
 
-    <!-- ===================== WHAT IS FLASHBANG ===================== -->
-    <section class="section whatis" id="what">
-      <div class="container whatis__grid">
-        <div class="whatis__left reveal">
-          <span class="kicker">What is FLASHBANG?</span>
-          <h2 class="display">More Than <span class="accent">Media.</span></h2>
-        </div>
-        <div class="whatis__right reveal">
-          <p>FLASHBANG MEDIA is building a connected gaming ecosystem across media, community, events and careers.</p>
-          <p class="muted">The company operates multiple gaming initiatives designed to connect different parts of the gaming industry — from the audiences who watch, to the creators who cover it, to the developers who build it.</p>
-        </div>
-      </div>
-      <div class="container pillars" id="pillars"></div>
-    </section>
-
-    <!-- ===================== ECOSYSTEM ===================== -->
-    <section class="section ecosystem" id="ecosystem">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="kicker">The Ecosystem</span>
-          <h2 class="display">The FLASHBANG Ecosystem</h2>
-          <p class="section-head__sub">Different platforms. One gaming ecosystem.</p>
-        </div>
-        <div class="eco-grid" id="ecoGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== INDUSTRY STRIP ===================== -->
-    <section class="section industry" id="industry">
-      <div class="container section-head reveal">
-        <span class="kicker">In the Field</span>
-        <h2 class="display" id="industryTitle"></h2>
-        <p class="section-head__sub" id="industryBody"></p>
-      </div>
-      <div class="industry__strip" id="industryStrip" aria-label="Gaming industry photography"></div>
-    </section>
-
-    <!-- ===================== EVENTS ===================== -->
-    <section class="section events" id="events">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="kicker">Events</span>
-          <h2 class="display">We Don't Just Cover Gaming.<br /><span class="accent">We're There.</span></h2>
-          <p class="section-head__sub">FLASHBANG's physical presence across gaming events, conferences and industry activities.</p>
-        </div>
-        <div class="events__list" id="eventsList"></div>
-        <div class="timeline" id="timeline"></div>
-      </div>
-    </section>
-
-    <!-- ===================== GAMETOUT VIDEOS ===================== -->
-    <section class="section videos" id="videos">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="kicker">GameTout</span>
-          <h2 class="display">From the Industry Floor<br />to Your Screen.</h2>
-        </div>
-        <div class="video-grid" id="videoGrid"></div>
-        <div class="section-cta reveal">
-          <a class="btn btn--accent" href="https://www.youtube.com/@GameTout" target="_blank" rel="noopener">Visit GameTout on YouTube</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== MEDIA GALLERY ===================== -->
-    <section class="section media" id="media">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="kicker">Media</span>
-          <h2 class="display">The Media Gallery</h2>
-          <p class="section-head__sub">Photography treated as a core brand asset.</p>
-        </div>
-        <div class="tabs" id="galleryTabs" role="tablist" aria-label="Media filters"></div>
-        <div class="masonry" id="galleryGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== STATS ===================== -->
-    <section class="section stats" id="stats">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="kicker">By the Numbers</span>
-          <h2 class="display">Real Numbers. No Fluff.</h2>
-        </div>
-        <div class="stats__grid" id="statsGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== ABOUT / MISSION / VISION ===================== -->
+    <!-- ===================== ABOUT (WHO WE ARE) ===================== -->
     <section class="section about" id="about">
       <div class="container">
         <div class="section-head reveal">
-          <span class="kicker">About FLASHBANG</span>
+          <span class="kicker">Who We Are</span>
           <h2 class="display" id="aboutTitle"></h2>
         </div>
-        <div class="about__body reveal" id="aboutBody"></div>
+        <p class="about__lead reveal" id="aboutBody"></p>
         <div class="mv">
           <div class="mv__card reveal">
             <span class="kicker">Our Mission</span>
@@ -226,7 +120,39 @@
             <p id="vision"></p>
           </div>
         </div>
-        <div class="about__legal reveal" id="aboutLegal"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCTS ===================== -->
+    <section class="section products" id="products">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">Our Products</span>
+          <h2 class="display">Different platforms.<br />One gaming ecosystem.</h2>
+        </div>
+        <div class="eco-grid" id="ecoGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== GAMETOUT VIDEOS ===================== -->
+    <section class="section videos" id="videos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">From GameTout</span>
+          <h2 class="display">Real coverage from the game industry.</h2>
+          <p class="section-head__sub">Interviews, reviews and news from our YouTube channel.</p>
+        </div>
+        <div class="video-grid" id="videoGrid"></div>
+        <div class="section-cta reveal">
+          <a class="btn btn--accent" href="https://www.youtube.com/@GameTout" target="_blank" rel="noopener">Visit GameTout on YouTube</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS ===================== -->
+    <section class="section stats" id="stats">
+      <div class="container">
+        <div class="stats__grid" id="statsGrid"></div>
       </div>
     </section>
 
@@ -235,8 +161,8 @@
       <div class="container contact__grid">
         <div class="contact__intro reveal">
           <span class="kicker">Contact</span>
-          <h2 class="display">Let's Build Something<br />Around <span class="accent">Gaming.</span></h2>
-          <p>For partnerships, media collaborations, events, business enquiries or opportunities, get in touch with FLASHBANG MEDIA.</p>
+          <h2 class="display">Let's build something<br />around <span class="accent">gaming.</span></h2>
+          <p>For partnerships, media collaborations, events or business enquiries, get in touch with FLASHBANG MEDIA.</p>
           <p class="contact__email" id="contactEmail"></p>
         </div>
         <form class="contact__form reveal" id="contactForm" novalidate>
@@ -247,10 +173,6 @@
           <div class="field">
             <label for="cEmail">Email</label>
             <input id="cEmail" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="cCompany">Company / Organization</label>
-            <input id="cCompany" name="company" type="text" autocomplete="organization" />
           </div>
           <div class="field">
             <label for="cReason">Reason for Contact</label>
@@ -272,7 +194,7 @@
     <div class="container footer__grid">
       <div class="footer__col footer__brandcol">
         <a class="brand" href="#hero">
-          <img src="assets/img/logo.png" alt="" class="brand__mark" width="30" height="30" />
+          <img src="assets/img/logo.png" alt="" class="brand__mark" width="28" height="28" />
           <span class="brand__name">FLASHBANG</span>
         </a>
         <p class="footer__desc">A gaming ecosystem connecting media, community, careers and events across the gaming industry.</p>
@@ -280,15 +202,14 @@
       <div class="footer__col">
         <h3>Company</h3>
         <a href="#about">About</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#events">Events</a>
+        <a href="#products">Products</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer__col">
-        <h3>Our Platforms</h3>
+        <h3>Our Products</h3>
         <a href="https://www.youtube.com/@GameTout" target="_blank" rel="noopener">GameTout</a>
         <a href="https://thegamevoice.com" target="_blank" rel="noopener">TheGameVoice</a>
-        <a href="#ecosystem">HireGameDev</a>
+        <a href="#products">HireGameDev</a>
       </div>
       <div class="footer__col">
         <h3>Connect</h3>
@@ -301,9 +222,8 @@
         <p class="footer__cin">CIN: U59111WB2026PTC286335</p>
       </div>
       <div class="footer__legal">
-        <a href="#">Privacy Policy</a>
+        <a href="#">Privacy</a>
         <a href="#">Terms</a>
-        <a href="#">Cookie Policy</a>
       </div>
     </div>
   </footer>

@@ -266,9 +266,11 @@ a { color: inherit; text-decoration: none; }
 .stat__label { color: var(--text-2); margin-top: 6px; font-size: 0.96rem; }
 
 /* ---------- About ---------- */
-.about__body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: clamp(44px, 6vw, 70px); }
-.about__body p { color: var(--text-2); font-size: 1.02rem; }
-.about__body p:first-child { font-size: 1.2rem; color: var(--text); }
+.about__lead {
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+  line-height: 1.45; color: var(--text); max-width: 60ch;
+  margin-bottom: clamp(36px, 5vw, 56px); font-weight: 400;
+}
 .mv { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .mv__card { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px); background: var(--surface); position: relative; overflow: hidden; }
 .mv__card::before { content: ""; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, var(--accent-soft), transparent 70%); }
