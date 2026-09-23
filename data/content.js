@@ -13,6 +13,14 @@ window.FLASHBANG = {
     email: "contact@flashbangmedia.com",
   },
 
+  // Live auto-refreshing feeds (fetched in the browser via CORS proxy).
+  // Set enabled:false to always use the curated lists below.
+  feeds: {
+    enabled: true,
+    youtubeChannelId: "UC9DcR6DZ53xCLYovwrPoHaw", // GameTout
+    gameVoiceUrl: "https://thegamevoice.com",
+  },
+
   // Only list links that actually exist. Empty url => hidden.
   social: [
     { label: "YouTube", url: "https://www.youtube.com/@GameTout" },
@@ -81,14 +89,59 @@ window.FLASHBANG = {
     },
   ],
 
-  // Real GameTout videos (thumbnails pulled live from YouTube by id).
+  // Curated GameTout videos — used instantly, then refreshed live from
+  // YouTube's RSS feed by feeds.js (falls back to this list on failure).
   videos: [
     { title: "Curve Games CEO Explains The Truth About Publishing Indie Games", category: "Interview", id: "GKN6XZ4wqEc" },
-    { title: "Unleash The Avatar — Indian Game ft. Varun Mayya", category: "Interview", id: "ntaodYvAfsE" },
-    { title: "This Sri Lankan Game is an Eye Opener for Indian Game Studios", category: "Feature", id: "kfq7ckUbtmw" },
+    { title: "This SRI LANKAN Game is an Eye Opener for Indian Game Studios", category: "Feature", id: "kfq7ckUbtmw" },
+    { title: "Counter Strike 2 Game is Bad for You", category: "Opinion", id: "RTcZhgZP6jc" },
     { title: "Black Myth: Zhong Kui — Gameplay Trailer Analysis", category: "Analysis", id: "_5KEpSy2Fvg" },
-    { title: "$100 Price Tag of GTA 6 — The End of Affordable Gaming?", category: "News", id: "D5AMIiDg96I" },
+    { title: "Which Controller to Buy? DualSense or Xbox Series X|S", category: "Guide", id: "f7elbgsyCG4" },
     { title: "Kartboard Dash Trailer — Try this Indian Game on Steam", category: "Trailer", id: "XAgLbjcyoj4" },
+  ],
+
+  // Event coverage — real IGDC / gaming event videos from the GameTout channel.
+  events: [
+    {
+      name: "IGDC 2025",
+      full: "India Game Developer Conference — Chennai",
+      year: "2025",
+      location: "Chennai, India",
+      role: "Full Documentary + Interviews",
+      description:
+        "Our full on-ground coverage of India's biggest game developer conference — a feature-length documentary, developer interviews and day-by-day highlights.",
+      videos: [
+        { title: "IGDC 2025 Chennai — Full Documentary", id: "dLS2RyHTH70" },
+        { title: "IGDC 2025 Chennai — GameTout Review", id: "tzNqT6NzwP0" },
+        { title: "IGDC 2025 — mini Documentary (Day 0 to Day 3)", id: "6rha-9f7U_E" },
+      ],
+    },
+    {
+      name: "IGDC 2024",
+      full: "India Game Developer Conference — Hyderabad",
+      year: "2024",
+      location: "Hyderabad, India",
+      role: "Documentary + Awards Coverage",
+      description:
+        "GameTout at IGDC 2024 — a Hindi documentary from the floor, the VIP mixer, and coverage of the IGDC 'BYOG' Awards night.",
+      videos: [
+        { title: "IGDC 2024 Hyderabad — Hindi Documentary", id: "qSlODa5Jeew" },
+        { title: "India GDC 'BYOG' Awards 2024", id: "0lD8Ge76y04" },
+        { title: "Quest to IGDC", id: "MvrQh7GxWQI" },
+      ],
+    },
+    {
+      name: "Game Dev Day 2025",
+      full: "Game Dev Day — Ahmedabad",
+      year: "2025",
+      location: "Ahmedabad, India",
+      role: "Event Coverage",
+      description:
+        "Covering the community game dev meet in Ahmedabad — talks, local studios and the growing regional dev scene. Is your city next?",
+      videos: [
+        { title: "Game 'Dev Day' 2025 Ahmedabad — is your City next?", id: "ssVoSP6Ts8g" },
+      ],
+    },
   ],
 
   // Real TheGameVoice articles (live images from their CDN).
@@ -141,7 +194,7 @@ window.FLASHBANG = {
   stats: [
     { value: "7K+", label: "GameTout Subscribers" },
     { value: "2", label: "Media Platforms" },
-    { value: "100s", label: "Videos & Articles" },
+    { value: "IGDC", label: "Events Covered" },
     { value: "IN", label: "Based in India" },
   ],
 

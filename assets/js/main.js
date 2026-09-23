@@ -69,32 +69,74 @@
     }).join("");
   }
 
-  /* ---------- VIDEOS ---------- */
-  if (D.videos) {
-    $("#videoGrid").innerHTML = D.videos.map(function (v) {
+  /* ---------- VIDEOS (re-usable so live feeds can refresh it) ---------- */
+  function renderVideos(list) {
+    if (!list || !list.length) return;
+    $("#videoGrid").innerHTML = list.slice(0, 6).map(function (v) {
       var url = v.url || (v.id ? "https://www.youtube.com/watch?v=" + v.id : "https://www.youtube.com/@GameTout");
       var thumb = v.thumb || (v.id ? "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg" : "assets/img/gametout.jpg");
       return (
-        '<a class="video-card reveal" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+        '<a class="video-card reveal in" href="' + esc(url) + '" target="_blank" rel="noopener">' +
           '<div class="video-card__thumb"><img loading="lazy" src="' + esc(thumb) + '" alt="' + esc(v.title) + '"><div class="video-card__play"><span>▶</span></div></div>' +
           '<div class="video-card__body"><span class="video-card__cat">' + esc(v.category) + '</span><h3 class="video-card__title">' + esc(v.title) + "</h3></div>" +
         "</a>"
       );
     }).join("");
   }
+  if (D.videos) renderVideos(D.videos);
 
-  /* ---------- ARTICLES ---------- */
-  if (D.articles) {
-    $("#articleGrid").innerHTML = D.articles.map(function (a) {
+  /* ---------- ARTICLES (re-usable) ---------- */
+  function renderArticles(list) {
+    if (!list || !list.length) return;
+    $("#articleGrid").innerHTML = list.slice(0, 6).map(function (a) {
+      var img = a.image
+        ? '<div class="article-card__thumb"><img loading="lazy" src="' + esc(a.image) + '" alt="' + esc(a.title) + '"></div>'
+        : '<div class="article-card__thumb article-card__thumb--empty"></div>';
+      var meta = '<span class="article-card__cat">' + esc(a.category || "Article") + "</span>" +
+        (a.date ? '<span class="article-card__date">' + esc(a.date) + "</span>" : "");
       return (
-        '<a class="article-card reveal" href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
-          '<div class="article-card__thumb"><img loading="lazy" src="' + esc(a.image) + '" alt="' + esc(a.title) + '"></div>' +
+        '<a class="article-card reveal in" href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
+          img +
           '<div class="article-card__body">' +
-            '<div class="article-card__meta"><span class="article-card__cat">' + esc(a.category) + '</span><span class="article-card__date">' + esc(a.date) + "</span></div>" +
+            '<div class="article-card__meta">' + meta + "</div>" +
             '<h3 class="article-card__title">' + esc(a.title) + "</h3>" +
             '<span class="article-card__more">Read on TheGameVoice →</span>' +
           "</div>" +
         "</a>"
+      );
+    }).join("");
+  }
+  if (D.articles) renderArticles(D.articles);
+
+  // Expose renderers so feeds.js can swap in fresh, live data.
+  window.FBRender = { videos: renderVideos, articles: renderArticles };
+
+  /* ---------- EVENTS ---------- */
+  if (D.events && D.events.length) {
+    $("#eventsList").innerHTML = D.events.map(function (ev) {
+      var clips = (ev.videos || []).map(function (v) {
+        var url = "https://www.youtube.com/watch?v=" + v.id;
+        var thumb = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg";
+        return (
+          '<a class="ev-clip" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+            '<div class="ev-clip__thumb"><img loading="lazy" src="' + esc(thumb) + '" alt="' + esc(v.title) + '"><span class="ev-clip__play">▶</span></div>' +
+            '<span class="ev-clip__title">' + esc(v.title) + "</span>" +
+          "</a>"
+        );
+      }).join("");
+      return (
+        '<article class="event reveal">' +
+          '<div class="event__head">' +
+            '<div class="event__id"><span class="event__year">' + esc(ev.year) + '</span><h3 class="event__name">' + esc(ev.name) + "</h3></div>" +
+            '<div class="event__meta">' +
+              '<span class="event__full">' + esc(ev.full) + "</span>" +
+              '<span class="event__loc">' + esc(ev.location) + "</span>" +
+              '<span class="event__role">' + esc(ev.role) + "</span>" +
+            "</div>" +
+          "</div>" +
+          '<p class="event__desc">' + esc(ev.description) + "</p>" +
+          '<div class="ev-clips">' + clips + "</div>" +
+        "</article>"
       );
     }).join("");
   }
@@ -170,7 +212,7 @@
       }
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
-  ["about", "products", "work", "contact"].forEach(function (id) { var s = document.getElementById(id); if (s) secObserver.observe(s); });
+  ["about", "products", "work", "events", "contact"].forEach(function (id) { var s = document.getElementById(id); if (s) secObserver.observe(s); });
 
   /* ---------- REVEAL ---------- */
   var revObserver = new IntersectionObserver(function (entries, obs) {

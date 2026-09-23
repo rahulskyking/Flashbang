@@ -19,6 +19,32 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
+## Live, auto-updating content
+
+The **Work** section pulls **fresh content automatically** in the visitor's
+browser:
+
+- **GameTout videos** — from YouTube's public RSS feed
+  (`youtube.com/feeds/videos.xml?channel_id=…`, no API key needed).
+- **TheGameVoice articles** — parsed from the site's homepage.
+
+Because this is a static site, the browser can't call those hosts directly
+(CORS), so [`assets/js/feeds.js`](assets/js/feeds.js) routes requests through
+public CORS proxies with automatic fallback, and caches results for 30 minutes.
+The page **always renders the curated lists in `data/content.js` first**, then
+swaps in live data if a fetch succeeds — so it's instant, SEO-friendly and never
+looks broken if a proxy is down. A small green "live" dot appears on a section
+once fresh data loads.
+
+To turn this off and always use the curated lists, set `feeds.enabled: false`
+in `data/content.js`. For maximum reliability in production, replace the public
+proxies in `feeds.js` with your own tiny serverless function (or the official
+YouTube Data API).
+
+The **Events** section is curated from real event-coverage videos on the
+GameTout channel (IGDC 2025 Chennai, IGDC 2024 Hyderabad, Game Dev Day
+Ahmedabad). Add more events by editing the `events` array in `data/content.js`.
+
 ## Editing content
 
 **All copy, links, events, videos, articles, stats and social links live in one
