@@ -133,6 +133,7 @@ a { color: inherit; text-decoration: none; }
 .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .mobile-menu { display: flex; flex-direction: column; gap: 2px; padding: 12px var(--pad) 24px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.mobile-menu[hidden] { display: none; }
 .mobile-menu a { padding: 13px 0; font-size: 1.05rem; border-bottom: 1px solid var(--line); }
 .mobile-menu a:last-child { border: 0; margin-top: 12px; }
 
@@ -145,12 +146,17 @@ a { color: inherit; text-decoration: none; }
 }
 .hero__glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 90vw; height: 60vw; max-height: 700px; pointer-events: none;
   background: radial-gradient(closest-side, rgba(255,196,0,.16), rgba(255,122,0,.06) 55%, transparent 75%); }
+/* Minimal floating game controller motif */
+.hero__pad { position: absolute; top: 20%; right: clamp(4%, 8vw, 12%); width: clamp(120px, 16vw, 240px); height: auto; color: var(--accent); opacity: .16; pointer-events: none; z-index: 1; animation: pad-float 6s ease-in-out infinite; }
+@keyframes pad-float { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-16px) rotate(-4deg); } }
+@media (max-width: 720px) { .hero__pad { top: 8%; right: -6%; opacity: .1; } }
 .hero__content { position: relative; z-index: 2; padding-block: clamp(40px, 8vh, 90px); max-width: 960px; }
 .hero__title { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.6rem, 8vw, 5.6rem); line-height: 1; letter-spacing: -0.04em; margin: 22px 0 24px; }
 .hero__subtitle { font-size: clamp(1.02rem, 1.6vw, 1.25rem); color: var(--text-2); max-width: 60ch; }
 .hero__actions { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
 .hero__logos { display: flex; align-items: center; gap: 12px; margin-top: 44px; flex-wrap: wrap; }
-.hero__logos-label { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.hero__logos-label { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.hero__logos-label svg { color: var(--accent); }
 .hero__logo-chip { font-family: var(--f-display); font-weight: 600; font-size: .9rem; padding: 8px 16px; border-radius: 100px; border: 1px solid var(--line-2); position: relative; }
 .hero__logo-chip::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); margin-right: 9px; box-shadow: 0 0 10px var(--c); }
 .hero__logo-chip[data-c="#ff3d3d"] { --c: #ff3d3d; }
@@ -331,6 +337,9 @@ a { color: inherit; text-decoration: none; }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Responsive ---------- */
+@media (min-width: 941px) {
+  .mobile-menu { display: none !important; }
+}
 @media (max-width: 940px) {
   .nav__links { display: none; }
   .nav__toggle { display: flex; }
@@ -360,4 +369,5 @@ a { color: inherit; text-decoration: none; }
   .reveal { opacity: 1; transform: none; }
   .marquee__track { animation: none; }
   .fab { animation: none; }
+  .hero__pad { animation: none; }
 }
