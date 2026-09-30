@@ -1,4 +1,5 @@
-<!-- ===================== PRODUCTS ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["products"] = `<!-- ===================== PRODUCTS ===================== -->
 <section class="section products" id="products">
   <div class="container">
     <div class="section-head reveal">
@@ -8,3 +9,4 @@
     <div class="prod-list" id="prodList"></div>
   </div>
 </section>
+`;

@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css?v=12" />
+  <link rel="stylesheet" href="assets/css/style.css?v=13" />
   <script>
     (function () {
       try {
@@ -61,26 +61,43 @@
   <!-- ====== Section partials are injected here by assets/js/include.js ====== -->
   <!-- Each section lives in its own file under /sections for easy maintenance. -->
 
-  <div data-include="sections/nav.html"></div>
+  <div data-include="nav"></div>
 
   <span id="top"></span>
   <main id="main">
-    <div data-include="sections/hero.html"></div>
-    <div data-include="sections/about.html"></div>
-    <div data-include="sections/products.html"></div>
-    <div data-include="sections/work-videos.html"></div>
-    <div data-include="sections/work-articles.html"></div>
-    <div data-include="sections/events.html"></div>
-    <div data-include="sections/stats.html"></div>
-    <div data-include="sections/mission-vision.html"></div>
-    <div data-include="sections/contact.html"></div>
+    <div data-include="hero"></div>
+    <div data-include="about"></div>
+    <div data-include="products"></div>
+    <div data-include="work-videos"></div>
+    <div data-include="work-articles"></div>
+    <div data-include="events"></div>
+    <div data-include="stats"></div>
+    <div data-include="mission-vision"></div>
+    <div data-include="contact"></div>
   </main>
 
-  <div data-include="sections/footer.html"></div>
-  <div data-include="sections/fab.html"></div>
+  <div data-include="footer"></div>
+  <div data-include="fab"></div>
 
-  <!-- Data first, then the loader (which injects sections, then boots main.js + feeds.js) -->
-  <script src="data/content.js?v=12"></script>
-  <script src="assets/js/include.js?v=12"></script>
+  <!-- 1) content data -->
+  <script src="data/content.js?v=13"></script>
+  <!-- 2) section markup (each file registers into window.FB_SECTIONS) -->
+  <script src="sections/nav.js?v=13"></script>
+  <script src="sections/hero.js?v=13"></script>
+  <script src="sections/about.js?v=13"></script>
+  <script src="sections/products.js?v=13"></script>
+  <script src="sections/work-videos.js?v=13"></script>
+  <script src="sections/work-articles.js?v=13"></script>
+  <script src="sections/events.js?v=13"></script>
+  <script src="sections/stats.js?v=13"></script>
+  <script src="sections/mission-vision.js?v=13"></script>
+  <script src="sections/contact.js?v=13"></script>
+  <script src="sections/footer.js?v=13"></script>
+  <script src="sections/fab.js?v=13"></script>
+  <!-- 3) inject sections into their placeholders -->
+  <script src="assets/js/include.js?v=13"></script>
+  <!-- 4) render + animate, then pull live feeds -->
+  <script src="assets/js/main.js?v=13"></script>
+  <script src="assets/js/feeds.js?v=13"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-<!-- ===================== CONTACT ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["contact"] = `<!-- ===================== CONTACT ===================== -->
 <section class="section contact" id="contact">
   <div class="container contact__wrap">
     <div class="reveal">
@@ -13,3 +14,4 @@
     </div>
   </div>
 </section>
+`;

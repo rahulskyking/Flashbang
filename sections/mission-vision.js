@@ -1,4 +1,5 @@
-<!-- ===================== MISSION / VISION ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["mission-vision"] = `<!-- ===================== MISSION / VISION ===================== -->
 <section class="section mv-sec">
   <div class="container mv">
     <div class="mv__card reveal">
@@ -11,3 +12,4 @@
     </div>
   </div>
 </section>
+`;

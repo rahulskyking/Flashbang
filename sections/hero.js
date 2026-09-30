@@ -1,4 +1,5 @@
-<!-- ===================== HERO ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["hero"] = `<!-- ===================== HERO ===================== -->
 <section class="hero" id="hero">
   <div class="hero__grid-lines" aria-hidden="true"></div>
   <div class="hero__glow" aria-hidden="true"></div>
@@ -28,3 +29,4 @@
   </div>
   <div class="marquee" id="marquee" aria-hidden="true"></div>
 </section>
+`;

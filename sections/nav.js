@@ -1,4 +1,5 @@
-<!-- ===================== NAV ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["nav"] = `<!-- ===================== NAV ===================== -->
 <header class="nav" id="nav">
   <div class="container nav__inner">
     <a class="brand" href="#top" aria-label="FLASHBANG MEDIA home">
@@ -32,3 +33,4 @@
     <a href="#contact" class="btn btn--accent">Let's talk</a>
   </div>
 </header>
+`;

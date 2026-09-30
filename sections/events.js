@@ -1,4 +1,5 @@
-<!-- ===================== EVENTS ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["events"] = `<!-- ===================== EVENTS ===================== -->
 <section class="section events" id="events">
   <div class="container">
     <div class="section-head reveal">
@@ -9,3 +10,4 @@
     <div class="events__list" id="eventsList"></div>
   </div>
 </section>
+`;

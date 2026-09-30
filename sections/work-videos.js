@@ -1,4 +1,5 @@
-<!-- ===================== WORK: VIDEOS ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["work-videos"] = `<!-- ===================== WORK: VIDEOS ===================== -->
 <section class="section work" id="work">
   <div class="container">
     <div class="section-head section-head--row reveal">
@@ -11,3 +12,4 @@
     <div class="video-grid" id="videoGrid"></div>
   </div>
 </section>
+`;

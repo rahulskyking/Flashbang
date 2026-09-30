@@ -1,4 +1,5 @@
-<!-- ===================== FOOTER ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["footer"] = `<!-- ===================== FOOTER ===================== -->
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__col footer__brandcol">
@@ -34,3 +35,4 @@
     </div>
   </div>
 </footer>
+`;

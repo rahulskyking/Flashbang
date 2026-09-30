@@ -1,4 +1,5 @@
-<!-- ===================== WORK: ARTICLES ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["work-articles"] = `<!-- ===================== WORK: ARTICLES ===================== -->
 <section class="section work work--articles">
   <div class="container">
     <div class="section-head section-head--row reveal">
@@ -11,3 +12,4 @@
     <div class="article-grid" id="articleGrid"></div>
   </div>
 </section>
+`;

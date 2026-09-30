@@ -1,4 +1,5 @@
-<!-- ===================== ABOUT ===================== -->
+window.FB_SECTIONS = window.FB_SECTIONS || {};
+window.FB_SECTIONS["about"] = `<!-- ===================== ABOUT ===================== -->
 <section class="section about" id="about">
   <div class="container">
     <div class="about__top">
@@ -11,3 +12,4 @@
     <div class="about__points" id="aboutPoints"></div>
   </div>
 </section>
+`;
