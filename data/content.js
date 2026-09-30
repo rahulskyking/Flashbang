@@ -196,7 +196,6 @@ window.FLASHBANG = {
   // Only verified numbers. Leave value "" to hide.
   stats: [
     { value: "30K+", label: "Members Community" },
-    { value: "7K+", label: "GameTout Subscribers" },
     { value: "2", label: "Media Platforms" },
     { value: "IGDC", label: "Events Covered" },
     { value: "IN", label: "Based in India" },
