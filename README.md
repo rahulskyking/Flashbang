@@ -71,12 +71,33 @@ media is supplied.
 ## Structure
 
 ```
-index.html            # markup shell (semantic, SEO + OG + JSON-LD)
-data/content.js       # ← single source of truth for all content
-assets/css/style.css  # design system
-assets/js/main.js     # renders content, nav, gallery tabs, reveals, form
-assets/img/           # imagery & logo
+index.html              # shell: <head>, background, and section placeholders
+sections/               # ← each page section in its own file (easy to maintain)
+  nav.html  hero.html  about.html  products.html
+  work-videos.html  work-articles.html  events.html
+  stats.html  mission-vision.html  contact.html
+  footer.html  fab.html
+data/content.js         # ← single source of truth for all content
+assets/js/include.js    # loads the section partials, then boots the app
+assets/js/main.js       # renders content, nav, reveals, animations
+assets/js/feeds.js      # pulls live YouTube + TheGameVoice items
+assets/css/style.css    # design system
+assets/img/             # imagery & logo
 ```
+
+**How the pieces fit:** `index.html` holds only the `<head>`, the background,
+and one `<div data-include="sections/…">` placeholder per section. On load,
+`assets/js/include.js` fetches each partial, injects it in place, and then boots
+`main.js` and `feeds.js`. To edit a section's markup, open just that file in
+`sections/`. To add or reorder sections, add/move a `data-include` placeholder
+in `index.html` and create the matching file.
+
+> **Serve over HTTP.** Because sections are loaded with `fetch()`, open the site
+> through a web server (e.g. `python3 -m http.server`) or any static host — not
+> by double-clicking `index.html` (the `file://` protocol blocks `fetch`).
+> Remember to bump the `?v=` version in `index.html` **and** the `VER` constant
+> in `include.js` together when you change assets, so browsers reload them.
+
 
 ## Notes
 

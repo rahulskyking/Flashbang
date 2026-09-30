@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <link rel="stylesheet" href="assets/css/style.css?v=12" />
   <script>
     (function () {
       try {
@@ -58,223 +58,29 @@
     <span class="bg-fx__grid"></span>
   </div>
 
-  <!-- ===================== NAV ===================== -->
-  <header class="nav" id="nav">
-    <div class="container nav__inner">
-      <a class="brand" href="#top" aria-label="FLASHBANG MEDIA home">
-        <img src="assets/img/logo.png" alt="" class="brand__mark" width="30" height="30" />
-        <span class="brand__name">FLASHBANG<span class="brand__dot">.</span></span>
-      </a>
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#work">Work</a>
-        <a href="#events">Events</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav__right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        </button>
-        <a href="#contact" class="btn btn--accent nav__cta">Let's talk</a>
-        <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#about">About</a>
-      <a href="#products">Products</a>
-      <a href="#work">Work</a>
-      <a href="#events">Events</a>
-      <a href="#contact">Contact</a>
-      <a href="#contact" class="btn btn--accent">Let's talk</a>
-    </div>
-  </header>
+  <!-- ====== Section partials are injected here by assets/js/include.js ====== -->
+  <!-- Each section lives in its own file under /sections for easy maintenance. -->
+
+  <div data-include="sections/nav.html"></div>
 
   <span id="top"></span>
   <main id="main">
-    <!-- ===================== HERO ===================== -->
-    <section class="hero" id="hero">
-      <div class="hero__grid-lines" aria-hidden="true"></div>
-      <div class="hero__glow" aria-hidden="true"></div>
-      <svg class="hero__pad" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <path d="M20 22h24a10 10 0 0 1 9.8 8l2.4 14a6 6 0 0 1-9.8 5.6L40 46H24l-6.4 3.6A6 6 0 0 1 7.8 44l2.4-14A10 10 0 0 1 20 22Z" stroke="currentColor" stroke-width="2.5"/>
-        <path d="M20 31v8M16 35h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="43" cy="33" r="2.4" fill="currentColor"/>
-        <circle cx="49" cy="39" r="2.4" fill="currentColor"/>
-      </svg>
-      <div class="container hero__content">
-        <span class="pill reveal" id="heroKicker"></span>
-        <h1 class="hero__title">
-          <span id="heroLead"></span> <span class="grad" id="heroAccent"></span>
-        </h1>
-        <p class="hero__subtitle reveal" id="heroSubtitle"></p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--accent btn--lg" id="heroPrimary"></a>
-          <a class="btn btn--ghost btn--lg" id="heroSecondary"></a>
-        </div>
-        <div class="hero__logos reveal">
-          <span class="hero__logos-label">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1"/><circle cx="17.5" cy="13.5" r="1"/><path d="M17.5 6.5a5.5 5.5 0 0 1 5 5.4l.4 4.8a2.4 2.4 0 0 1-4.2 1.8L16.5 15h-9l-2.2 3.5A2.4 2.4 0 0 1 1 16.7l.5-4.8a5.5 5.5 0 0 1 5-5.4Z"/></svg>
-            Powering</span>
-          <span class="hero__logo-chip" data-c="#ff3d3d">GameTout</span>
-          <span class="hero__logo-chip" data-c="#3d7bff">TheGameVoice</span>
-        </div>
-      </div>
-      <div class="marquee" id="marquee" aria-hidden="true"></div>
-    </section>
-
-    <!-- ===================== ABOUT ===================== -->
-    <section class="section about" id="about">
-      <div class="container">
-        <div class="about__top">
-          <div class="reveal">
-            <span class="eyebrow">Who we are</span>
-            <h2 class="h-lg" id="aboutTitle"></h2>
-          </div>
-          <p class="about__lead reveal" id="aboutBody"></p>
-        </div>
-        <div class="about__points" id="aboutPoints"></div>
-      </div>
-    </section>
-
-    <!-- ===================== PRODUCTS ===================== -->
-    <section class="section products" id="products">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Our products</span>
-          <h2 class="h-lg">Two platforms.<br />One media company.</h2>
-        </div>
-        <div class="prod-list" id="prodList"></div>
-      </div>
-    </section>
-
-    <!-- ===================== WORK: VIDEOS ===================== -->
-    <section class="section work" id="work">
-      <div class="container">
-        <div class="section-head section-head--row reveal">
-          <div>
-            <span class="eyebrow" style="--e:#ff3d3d">From GameTout</span>
-            <h2 class="h-lg">On the channel.</h2>
-          </div>
-          <a class="link-arrow" href="https://www.youtube.com/@GameTout" target="_blank" rel="noopener">All videos →</a>
-        </div>
-        <div class="video-grid" id="videoGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== WORK: ARTICLES ===================== -->
-    <section class="section work work--articles">
-      <div class="container">
-        <div class="section-head section-head--row reveal">
-          <div>
-            <span class="eyebrow" style="--e:#3d7bff">From TheGameVoice</span>
-            <h2 class="h-lg">Latest reads.</h2>
-          </div>
-          <a class="link-arrow" href="https://thegamevoice.com" target="_blank" rel="noopener">All articles →</a>
-        </div>
-        <div class="article-grid" id="articleGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== EVENTS ===================== -->
-    <section class="section events" id="events">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow" style="--e:#ffc400">On the ground</span>
-          <h2 class="h-lg">We don't just cover gaming.<br /><span class="grad">We're there.</span></h2>
-          <p class="section-head__sub">Real event coverage from the GameTout channel — conferences, dev meets and awards across India.</p>
-        </div>
-        <div class="events__list" id="eventsList"></div>
-      </div>
-    </section>
-
-    <!-- ===================== STATS ===================== -->
-    <section class="section stats" id="stats">
-      <div class="container">
-        <div class="stats__grid" id="statsGrid"></div>
-      </div>
-    </section>
-
-    <!-- ===================== MISSION / VISION ===================== -->
-    <section class="section mv-sec">
-      <div class="container mv">
-        <div class="mv__card reveal">
-          <span class="eyebrow">Mission</span>
-          <p id="mission"></p>
-        </div>
-        <div class="mv__card reveal">
-          <span class="eyebrow">Vision</span>
-          <p id="vision"></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== CONTACT ===================== -->
-    <section class="section contact" id="contact">
-      <div class="container contact__wrap">
-        <div class="reveal">
-          <span class="eyebrow">Contact</span>
-          <h2 class="h-lg">Let's build something<br />around <span class="grad">gaming.</span></h2>
-          <p class="contact__lead">For partnerships, media collaborations, events, sponsorships or business enquiries, reach out to FLASHBANG MEDIA. We reply to every serious message.</p>
-          <a class="contact__email-big reveal" id="contactEmailLink" href="mailto:contact@flashbangmedia.com">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            <span id="contactEmail"></span>
-          </a>
-          <p class="contact__hint">Tap to open your mail app — or copy the address above.</p>
-        </div>
-      </div>
-    </section>
+    <div data-include="sections/hero.html"></div>
+    <div data-include="sections/about.html"></div>
+    <div data-include="sections/products.html"></div>
+    <div data-include="sections/work-videos.html"></div>
+    <div data-include="sections/work-articles.html"></div>
+    <div data-include="sections/events.html"></div>
+    <div data-include="sections/stats.html"></div>
+    <div data-include="sections/mission-vision.html"></div>
+    <div data-include="sections/contact.html"></div>
   </main>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__col footer__brandcol">
-        <a class="brand" href="#top">
-          <img src="assets/img/logo.png" alt="" class="brand__mark" width="28" height="28" />
-          <span class="brand__name">FLASHBANG<span class="brand__dot">.</span></span>
-        </a>
-        <p class="footer__desc">A gaming media company connecting audiences, creators and developers across the gaming industry.</p>
-      </div>
-      <div class="footer__col">
-        <h3>Company</h3>
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer__col">
-        <h3>Products</h3>
-        <a href="https://www.youtube.com/@GameTout" target="_blank" rel="noopener">GameTout</a>
-        <a href="https://thegamevoice.com" target="_blank" rel="noopener">TheGameVoice</a>
-      </div>
-      <div class="footer__col">
-        <h3>Connect</h3>
-        <div id="footerSocial"></div>
-      </div>
-    </div>
-    <div class="container footer__bottom">
-      <div>
-        <p>&copy; <span id="year"></span> FLASHBANG MEDIA PRIVATE LIMITED</p>
-        <p class="footer__cin">CIN: U59111WB2026PTC286335 · West Bengal, India</p>
-      </div>
-      <div class="footer__legal">
-        <a href="mailto:contact@flashbangmedia.com">contact@flashbangmedia.com</a>
-      </div>
-    </div>
-  </footer>
+  <div data-include="sections/footer.html"></div>
+  <div data-include="sections/fab.html"></div>
 
-  <!-- ===================== FLOATING CONTACT BUTTON ===================== -->
-  <a href="mailto:contact@flashbangmedia.com" class="fab" id="fab" aria-label="Email FLASHBANG MEDIA">
-    <span class="fab__pulse" aria-hidden="true"></span>
-    <svg class="fab__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-    <span class="fab__label">Contact us</span>
-  </a>
-
-  <script src="data/content.js?v=11"></script>
-  <script src="assets/js/main.js?v=11"></script>
-  <script src="assets/js/feeds.js?v=11"></script>
+  <!-- Data first, then the loader (which injects sections, then boots main.js + feeds.js) -->
+  <script src="data/content.js?v=12"></script>
+  <script src="assets/js/include.js?v=12"></script>
 </body>
 </html>
