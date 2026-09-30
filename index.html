@@ -47,8 +47,13 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Subtle always-on Pac-Man background (canvas, drawn behind everything) -->
-  <canvas class="pac-bg" id="pacBg" aria-hidden="true"></canvas>
+  <!-- Animated aurora background (pure CSS, behind all content) -->
+  <div class="bg-fx" aria-hidden="true">
+    <span class="bg-fx__blob b1"></span>
+    <span class="bg-fx__blob b2"></span>
+    <span class="bg-fx__blob b3"></span>
+    <span class="bg-fx__grid"></span>
+  </div>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
@@ -268,6 +273,5 @@
   <script src="data/content.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/feeds.js"></script>
-  <script src="assets/js/pacman-bg.js"></script>
 </body>
 </html>

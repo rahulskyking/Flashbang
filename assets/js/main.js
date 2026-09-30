@@ -10,6 +10,22 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   };
+  var prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Scroll-reveal engine (defined early so renderers can use it) ---------- */
+  var revObserver = new IntersectionObserver(function (entries, obs) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+  function observeReveals() {
+    document.querySelectorAll(".reveal:not(.in)").forEach(function (r) { revObserver.observe(r); });
+  }
+  // Stagger direct children of a container so they cascade in.
+  function stagger(container, step) {
+    if (!container) return;
+    var kids = container.children, s = step || 80;
+    for (var i = 0; i < kids.length; i++) { kids[i].style.transitionDelay = (i * s) + "ms"; }
+  }
 
   /* ---------- HERO ---------- */
   if (D.hero) {
@@ -71,32 +87,37 @@
   }
 
   /* ---------- VIDEOS (re-usable so live feeds can refresh it) ---------- */
-  function renderVideos(list) {
+  function renderVideos(list, instant) {
     if (!list || !list.length) return;
-    $("#videoGrid").innerHTML = list.slice(0, 6).map(function (v) {
+    var cls = instant ? "video-card reveal in" : "video-card reveal";
+    var grid = $("#videoGrid");
+    grid.innerHTML = list.slice(0, 6).map(function (v) {
       var url = v.url || (v.id ? "https://www.youtube.com/watch?v=" + v.id : "https://www.youtube.com/@GameTout");
       var thumb = v.thumb || (v.id ? "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg" : "assets/img/gametout.jpg");
       return (
-        '<a class="video-card reveal in" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+        '<a class="' + cls + '" href="' + esc(url) + '" target="_blank" rel="noopener">' +
           '<div class="video-card__thumb"><img loading="lazy" src="' + esc(thumb) + '" alt="' + esc(v.title) + '"><div class="video-card__play"><span>▶</span></div></div>' +
           '<div class="video-card__body"><span class="video-card__cat">' + esc(v.category) + '</span><h3 class="video-card__title">' + esc(v.title) + "</h3></div>" +
         "</a>"
       );
     }).join("");
+    stagger(grid); if (!instant) observeReveals();
   }
   if (D.videos) renderVideos(D.videos);
 
   /* ---------- ARTICLES (re-usable) ---------- */
-  function renderArticles(list) {
+  function renderArticles(list, instant) {
     if (!list || !list.length) return;
-    $("#articleGrid").innerHTML = list.slice(0, 6).map(function (a) {
+    var cls = instant ? "article-card reveal in" : "article-card reveal";
+    var grid = $("#articleGrid");
+    grid.innerHTML = list.slice(0, 6).map(function (a) {
       var img = a.image
         ? '<div class="article-card__thumb"><img loading="lazy" src="' + esc(a.image) + '" alt="' + esc(a.title) + '"></div>'
         : '<div class="article-card__thumb article-card__thumb--empty"></div>';
       var meta = '<span class="article-card__cat">' + esc(a.category || "Article") + "</span>" +
         (a.date ? '<span class="article-card__date">' + esc(a.date) + "</span>" : "");
       return (
-        '<a class="article-card reveal in" href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
+        '<a class="' + cls + '" href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
           img +
           '<div class="article-card__body">' +
             '<div class="article-card__meta">' + meta + "</div>" +
@@ -106,11 +127,15 @@
         "</a>"
       );
     }).join("");
+    stagger(grid); if (!instant) observeReveals();
   }
   if (D.articles) renderArticles(D.articles);
 
-  // Expose renderers so feeds.js can swap in fresh, live data.
-  window.FBRender = { videos: renderVideos, articles: renderArticles };
+  // Expose renderers so feeds.js can swap in fresh, live data (instant = no re-animate).
+  window.FBRender = {
+    videos: function (l) { renderVideos(l, true); },
+    articles: function (l) { renderArticles(l, true); },
+  };
 
   /* ---------- EVENTS ---------- */
   if (D.events && D.events.length) {
@@ -196,9 +221,9 @@
   }, { rootMargin: "-45% 0px -50% 0px" });
   ["about", "products", "work", "events", "contact"].forEach(function (id) { var s = document.getElementById(id); if (s) secObserver.observe(s); });
 
-  /* ---------- REVEAL ---------- */
-  var revObserver = new IntersectionObserver(function (entries, obs) {
-    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); } });
-  }, { threshold: 0.1 });
-  requestAnimationFrame(function () { document.querySelectorAll(".reveal").forEach(function (r) { revObserver.observe(r); }); });
+  /* ---------- REVEAL: stagger grids + observe everything ---------- */
+  ["#ecoGrid", "#prodList", "#aboutPoints", "#videoGrid", "#articleGrid", "#eventsList", "#statsGrid"].forEach(function (sel) {
+    stagger($(sel));
+  });
+  requestAnimationFrame(observeReveals);
 })();
