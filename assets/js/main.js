@@ -17,9 +17,21 @@
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); } });
   }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 
+  var hasIO = "IntersectionObserver" in window;
   function observeReveals() {
+    if (!hasIO) { // very old browsers: just show everything
+      document.querySelectorAll(".reveal").forEach(function (r) { r.classList.add("in"); });
+      return;
+    }
     document.querySelectorAll(".reveal:not(.in)").forEach(function (r) { revObserver.observe(r); });
   }
+  // Safety net: nothing should ever stay invisible if something goes wrong.
+  setTimeout(function () {
+    document.querySelectorAll(".reveal:not(.in)").forEach(function (r) {
+      var rect = r.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) r.classList.add("in");
+    });
+  }, 2500);
   // Stagger direct children of a container so they cascade in.
   function stagger(container, step) {
     if (!container) return;

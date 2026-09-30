@@ -429,13 +429,11 @@ main, .footer { position: relative; z-index: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
-  .reveal, [data-anim] { opacity: 1 !important; transform: none !important; }
+  /* Keep gentle fades + the ambient background, but drop large/looping motion. */
+  .reveal { transition-duration: .5s !important; }
   .hero__title .word i { transform: none !important; }
   .prod .prod__media img { clip-path: none !important; }
   .tw-caret { display: none !important; }
-  .marquee__track { animation: none; }
-  .fab { animation: none; }
   .hero__pad { animation: none; }
-  .bg-fx__blob { animation: none !important; }
+  html { scroll-behavior: auto; }
 }
