@@ -301,4 +301,93 @@
     }, { threshold: 0.6 });
     document.querySelectorAll("main h2.h-lg").forEach(function (h) { twObserver.observe(h); });
   }
+
+  /* ---------- SCROLL PROGRESS BAR ---------- */
+  (function () {
+    var bar = $("#scrollProg"); if (!bar) return;
+    var t = false;
+    function upd() {
+      var d = document.documentElement, max = (d.scrollHeight - d.clientHeight) || 1;
+      bar.style.width = (Math.min(1, window.scrollY / max) * 100) + "%";
+    }
+    upd();
+    window.addEventListener("scroll", function () {
+      if (!t) { t = true; requestAnimationFrame(function () { upd(); t = false; }); }
+    }, { passive: true });
+  })();
+
+  if (!prefersReduce) {
+    /* ---------- 3D TILT ON CARDS ---------- */
+    var tiltSel = ".prod, .video-card, .article-card, .point, .stat, .mv__card, .ev-clip";
+    document.querySelectorAll(tiltSel).forEach(function (el) {
+      el.classList.add("tiltable");
+      if (el.matches(".video-card, .article-card, .prod, .point, .stat")) el.classList.add("card-shine");
+      var raf;
+      el.addEventListener("mousemove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          el.style.transition = "transform .08s linear";
+          el.style.transform = "perspective(850px) rotateX(" + (-py * 6).toFixed(2) + "deg) rotateY(" + (px * 8).toFixed(2) + "deg) translateY(-6px)";
+        });
+      });
+      el.addEventListener("mouseleave", function () {
+        cancelAnimationFrame(raf);
+        el.style.transition = "";
+        el.style.transform = "";
+      });
+    });
+
+    /* ---------- MAGNETIC BUTTONS ---------- */
+    document.querySelectorAll(".btn--accent, .fab").forEach(function (btn) {
+      var raf;
+      btn.addEventListener("mousemove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var mx = e.clientX - r.left - r.width / 2;
+        var my = e.clientY - r.top - r.height / 2;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          btn.style.transform = "translate(" + (mx * 0.25).toFixed(1) + "px," + (my * 0.35).toFixed(1) + "px)";
+        });
+      });
+      btn.addEventListener("mouseleave", function () {
+        cancelAnimationFrame(raf);
+        btn.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------- COUNT-UP STATS ---------- */
+  (function () {
+    var grid = $("#statsGrid"); if (!grid) return;
+    function countEl(el) {
+      var raw = (el.textContent || "").trim();
+      var m = raw.match(/^(\d+)(.*)$/);
+      if (!m) return;                       // non-numeric (IGDC, IN…) — leave as is
+      var target = parseInt(m[1], 10), suffix = m[2], dur = 1300, start = 0;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min(1, (ts - start) / dur);
+        var val = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        el.textContent = val + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!hasIO || prefersReduce) return;
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.querySelectorAll(".stat").forEach(function (s) {
+            s.classList.add("counted");
+            countEl(s.querySelector(".stat__value"));
+          });
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(grid);
+  })();
 })();

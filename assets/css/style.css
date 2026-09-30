@@ -387,6 +387,32 @@ main, .footer { position: relative; z-index: 1; }
 /* ---------- Scroll reveal animations ---------- */
 .reveal { opacity: 0; transform: translateY(38px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Extra content effects ---------- */
+/* Scroll progress bar */
+.scroll-prog { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 300;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 0 12px var(--accent-2); }
+
+/* Shimmering gradient text */
+.grad { background-size: 220% auto; animation: grad-shimmer 6s linear infinite; }
+@keyframes grad-shimmer { to { background-position: 220% center; } }
+
+/* Tiltable cards */
+.tiltable { transform-style: preserve-3d; transition: transform .3s var(--ease), box-shadow .3s, border-color .3s; will-change: transform; }
+
+/* Shine sweep on hover */
+.card-shine { position: relative; }
+.card-shine::after {
+  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.22) 48%, transparent 62%);
+  transform: translateX(-120%);
+}
+.card-shine:hover::after { animation: shine .85s var(--ease); }
+@keyframes shine { 0% { transform: translateX(-120%); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateX(120%); opacity: 0; } }
+
+/* Count-up numbers pop slightly when they land */
+.stat.counted .stat__value { animation: num-pop .5s var(--ease); }
+@keyframes num-pop { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
 /* Directional variants (add data-anim="left|right|zoom") */
 [data-anim="left"] { transform: translateX(-48px); }
 [data-anim="right"] { transform: translateX(48px); }
@@ -435,5 +461,7 @@ main, .footer { position: relative; z-index: 1; }
   .prod .prod__media img { clip-path: none !important; }
   .tw-caret { display: none !important; }
   .hero__pad { animation: none; }
+  .grad { animation: none !important; }
+  .card-shine::after { display: none !important; }
   html { scroll-behavior: auto; }
 }
