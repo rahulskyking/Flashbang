@@ -337,45 +337,16 @@ a { color: inherit; text-decoration: none; }
 @keyframes fab-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
 @keyframes fab-in { from { opacity: 0; transform: translateY(30px) scale(.8); } to { opacity: 1; transform: none; } }
 
-/* ---------- Pac-Man scroll progress ---------- */
-.pacman-bar {
-  position: fixed; top: 0; left: 0; right: 0; height: 18px; z-index: 250;
-  pointer-events: none; overflow: hidden;
+/* ---------- Subtle always-on Pac-Man layer ---------- */
+/* Ultra-faint, non-interactive layer over the content so it's visible
+   site-wide, but kept BELOW the nav and floating button so those stay crisp. */
+.pac-bg {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 5; pointer-events: none;
+  opacity: .05;             /* very subtle */
+  mix-blend-mode: screen;
 }
-.pacman-dots {
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle, var(--accent) 2.2px, transparent 2.6px);
-  background-size: 24px 18px; background-position: 12px center;
-  opacity: .5;
-  will-change: clip-path;
-}
-.pacman {
-  position: absolute; top: 50%; left: 0; width: 15px; height: 15px;
-  transform: translate(-50%, -50%);
-  background: var(--accent);
-  border-radius: 50%;
-  filter: drop-shadow(0 0 6px rgba(255,196,0,.7));
-  animation: pac-chomp .32s linear infinite;
-  will-change: left;
-}
-@keyframes pac-chomp {
-  0%, 100% { clip-path: polygon(100% 22%, 45% 50%, 100% 78%, 100% 100%, 0 100%, 0 0, 100% 0); }
-  50%      { clip-path: polygon(100% 48%, 45% 50%, 100% 52%, 100% 100%, 0 100%, 0 0, 100% 0); }
-}
-.pacman-ghost {
-  position: absolute; top: 50%; left: 0; width: 13px; height: 13px;
-  transform: translate(-50%, -50%);
-  background: #6be5ff;
-  border-radius: 50% 50% 22% 22%;
-  opacity: .9;
-  will-change: left;
-}
-.pacman-ghost::before, .pacman-ghost::after {
-  content: ""; position: absolute; top: 34%; width: 3px; height: 3px;
-  background: #0b0b0f; border-radius: 50%;
-}
-.pacman-ghost::before { left: 2.5px; }
-.pacman-ghost::after { right: 2.5px; }
+[data-theme="light"] .pac-bg { opacity: .06; mix-blend-mode: multiply; }
 
 /* ---------- Reveal ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -415,5 +386,4 @@ a { color: inherit; text-decoration: none; }
   .marquee__track { animation: none; }
   .fab { animation: none; }
   .hero__pad { animation: none; }
-  .pacman { animation: none; clip-path: polygon(100% 22%, 45% 50%, 100% 78%, 100% 100%, 0 100%, 0 0, 100% 0); }
 }

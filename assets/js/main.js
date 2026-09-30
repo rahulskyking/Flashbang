@@ -196,31 +196,6 @@
   }, { rootMargin: "-45% 0px -50% 0px" });
   ["about", "products", "work", "events", "contact"].forEach(function (id) { var s = document.getElementById(id); if (s) secObserver.observe(s); });
 
-  /* ---------- PAC-MAN SCROLL PROGRESS ---------- */
-  (function () {
-    var bar = $("#pacmanBar"), pac = $("#pacman"), dots = $("#pacmanDots"), ghost = $("#pacmanGhost");
-    if (!bar || !pac || !dots) return;
-    var w = 0;
-    var measure = function () { w = bar.clientWidth; };
-    measure();
-    window.addEventListener("resize", measure, { passive: true });
-    var update = function () {
-      var doc = document.documentElement;
-      var max = (doc.scrollHeight - doc.clientHeight) || 1;
-      var pct = Math.min(1, Math.max(0, window.scrollY / max));
-      var x = pct * w;
-      pac.style.left = x + "px";
-      // Dots to the left of Pac-Man are "eaten".
-      dots.style.clipPath = "inset(0 0 0 " + x + "px)";
-      if (ghost) ghost.style.left = Math.max(-20, x - 26) + "px"; // chases behind
-    };
-    update();
-    var ticking = false;
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(function () { update(); ticking = false; }); }
-    }, { passive: true });
-  })();
-
   /* ---------- REVEAL ---------- */
   var revObserver = new IntersectionObserver(function (entries, obs) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); } });

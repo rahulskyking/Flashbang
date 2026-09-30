@@ -47,12 +47,8 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Pac-Man scroll progress: chomps dots across the top as you scroll -->
-  <div class="pacman-bar" id="pacmanBar" aria-hidden="true">
-    <div class="pacman-dots" id="pacmanDots"></div>
-    <div class="pacman-ghost" id="pacmanGhost"></div>
-    <div class="pacman" id="pacman"></div>
-  </div>
+  <!-- Subtle always-on Pac-Man background (canvas, drawn behind everything) -->
+  <canvas class="pac-bg" id="pacBg" aria-hidden="true"></canvas>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
@@ -272,5 +268,6 @@
   <script src="data/content.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/feeds.js"></script>
+  <script src="assets/js/pacman-bg.js"></script>
 </body>
 </html>
