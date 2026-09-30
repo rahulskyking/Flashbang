@@ -72,7 +72,9 @@ window.FLASHBANG = {
       cta: { label: "Watch on YouTube", href: "https://www.youtube.com/@GameTout" },
       contactCta: { label: "Collaborate with GameTout", href: "#contact" },
       accent: "#ff3d3d",
-      image: "assets/img/gametout.jpg",
+      // Real still from our IGDC 2025 Chennai documentary (YouTube).
+      image: "https://i.ytimg.com/vi/dLS2RyHTH70/maxresdefault.jpg",
+      imageFallback: "https://i.ytimg.com/vi/dLS2RyHTH70/hqdefault.jpg",
     },
     {
       id: "thegamevoice",
@@ -85,7 +87,8 @@ window.FLASHBANG = {
       cta: { label: "Visit TheGameVoice", href: "https://thegamevoice.com" },
       contactCta: { label: "Media / Editorial enquiry", href: "#contact" },
       accent: "#3d7bff",
-      image: "assets/img/thegamevoice.jpg",
+      // Real article header image from TheGameVoice.
+      image: "https://media.thegamevoice.com/uploads/506bc2df-0542-45cf-b955-7e1b650fc58c_ss_b5c61597d97078d7ea886fc199c509c5c17e1d96.1920x1080.jpg",
     },
   ],
 

@@ -51,7 +51,8 @@
         '<article class="prod reveal" style="--c:' + esc(c.accent || "#ffc400") + '">' +
           '<div class="prod__media">' +
             '<span class="prod__badge">' + esc(c.tagline) + "</span>" +
-            '<img loading="lazy" src="' + c.image + '" alt="' + esc(c.name) + '">' +
+            '<img loading="lazy" src="' + c.image + '" alt="' + esc(c.name) + '"' +
+              (c.imageFallback ? ' onerror="this.onerror=null;this.src=\'' + c.imageFallback + '\'"' : "") + ">" +
           "</div>" +
           '<div class="prod__body">' +
             '<h3 class="prod__name">' + esc(c.name) + "</h3>" +
@@ -148,29 +149,10 @@
     }).join("");
   }
 
-  /* ---------- CONTACT ---------- */
+  /* ---------- CONTACT (email only) ---------- */
   if (D.company && D.company.email) {
-    $("#contactEmail").textContent = D.company.email;
-    $("#contactEmailLink").href = "mailto:" + D.company.email;
-  }
-  if (D.contactReasons) {
-    $("#cReason").innerHTML = '<option value="" disabled selected>Select a reason</option>' +
-      D.contactReasons.map(function (r) { return '<option value="' + esc(r) + '">' + esc(r) + "</option>"; }).join("");
-  }
-  var form = $("#contactForm");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var note = $("#formNote");
-      if (!form.checkValidity()) { form.reportValidity(); note.textContent = "Please complete the required fields."; return; }
-      var fd = new FormData(form);
-      var subject = "FLASHBANG Enquiry — " + (fd.get("reason") || "General");
-      var body = "Name: " + fd.get("name") + "\nEmail: " + fd.get("email") + "\nReason: " + fd.get("reason") + "\n\n" + fd.get("message");
-      var to = (D.company && D.company.email) || "";
-      if (to) window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-      note.textContent = "Thanks — your email client should open to send this enquiry.";
-      form.reset(); if (D.contactReasons) $("#cReason").selectedIndex = 0;
-    });
+    var ce = $("#contactEmail"); if (ce) ce.textContent = D.company.email;
+    var cel = $("#contactEmailLink"); if (cel) cel.href = "mailto:" + D.company.email;
   }
 
   /* ---------- FOOTER ---------- */
@@ -213,6 +195,31 @@
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
   ["about", "products", "work", "events", "contact"].forEach(function (id) { var s = document.getElementById(id); if (s) secObserver.observe(s); });
+
+  /* ---------- PAC-MAN SCROLL PROGRESS ---------- */
+  (function () {
+    var bar = $("#pacmanBar"), pac = $("#pacman"), dots = $("#pacmanDots"), ghost = $("#pacmanGhost");
+    if (!bar || !pac || !dots) return;
+    var w = 0;
+    var measure = function () { w = bar.clientWidth; };
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+    var update = function () {
+      var doc = document.documentElement;
+      var max = (doc.scrollHeight - doc.clientHeight) || 1;
+      var pct = Math.min(1, Math.max(0, window.scrollY / max));
+      var x = pct * w;
+      pac.style.left = x + "px";
+      // Dots to the left of Pac-Man are "eaten".
+      dots.style.clipPath = "inset(0 0 0 " + x + "px)";
+      if (ghost) ghost.style.left = Math.max(-20, x - 26) + "px"; // chases behind
+    };
+    update();
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(function () { update(); ticking = false; }); }
+    }, { passive: true });
+  })();
 
   /* ---------- REVEAL ---------- */
   var revObserver = new IntersectionObserver(function (entries, obs) {

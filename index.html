@@ -47,6 +47,13 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Pac-Man scroll progress: chomps dots across the top as you scroll -->
+  <div class="pacman-bar" id="pacmanBar" aria-hidden="true">
+    <div class="pacman-dots" id="pacmanDots"></div>
+    <div class="pacman-ghost" id="pacmanGhost"></div>
+    <div class="pacman" id="pacman"></div>
+  </div>
+
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
@@ -203,36 +210,17 @@
 
     <!-- ===================== CONTACT ===================== -->
     <section class="section contact" id="contact">
-      <div class="container contact__grid">
-        <div class="contact__intro reveal">
+      <div class="container contact__wrap">
+        <div class="reveal">
           <span class="eyebrow">Contact</span>
           <h2 class="h-lg">Let's build something<br />around <span class="grad">gaming.</span></h2>
-          <p>For partnerships, media collaborations, events or business enquiries, get in touch with FLASHBANG MEDIA.</p>
-          <a class="contact__email" id="contactEmailLink" href="mailto:contact@flashbangmedia.com">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <p class="contact__lead">For partnerships, media collaborations, events, sponsorships or business enquiries, reach out to FLASHBANG MEDIA. We reply to every serious message.</p>
+          <a class="contact__email-big reveal" id="contactEmailLink" href="mailto:contact@flashbangmedia.com">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             <span id="contactEmail"></span>
           </a>
+          <p class="contact__hint">Tap to open your mail app — or copy the address above.</p>
         </div>
-        <form class="contact__form reveal" id="contactForm" novalidate>
-          <div class="field">
-            <label for="cName">Name</label>
-            <input id="cName" name="name" type="text" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="cEmail">Email</label>
-            <input id="cEmail" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="cReason">Reason for contact</label>
-            <select id="cReason" name="reason" required></select>
-          </div>
-          <div class="field">
-            <label for="cMessage">Message</label>
-            <textarea id="cMessage" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--accent btn--full btn--lg">Send enquiry</button>
-          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </section>
   </main>
