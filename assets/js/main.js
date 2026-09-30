@@ -27,6 +27,51 @@
     for (var i = 0; i < kids.length; i++) { kids[i].style.transitionDelay = (i * s) + "ms"; }
   }
 
+  // Split an element's text into word spans that rise up (movie-title style).
+  function splitWords(el, gradient) {
+    if (!el) return;
+    var words = (el.textContent || "").trim().split(/\s+/);
+    el.innerHTML = words.map(function (w, i) {
+      return '<span class="word"><i' + (gradient ? ' class="grad"' : "") +
+        ' style="transition-delay:' + (i * 65) + 'ms">' + esc(w) + "</i></span>";
+    }).join(" ");
+  }
+
+  // Typewriter: retype a heading's text on scroll, preserving <br> and .grad.
+  function typewriter(h) {
+    if (h.dataset.typed) return;
+    h.dataset.typed = "1";
+    // Build a token list from child nodes so styling/line-breaks survive.
+    var tokens = [];
+    Array.prototype.forEach.call(h.childNodes, function (n) {
+      if (n.nodeType === 3) tokens.push({ t: "text", s: n.nodeValue, cls: "" });
+      else if (n.nodeName === "BR") tokens.push({ t: "br" });
+      else tokens.push({ t: "text", s: n.textContent, cls: n.className || "" });
+    });
+    // Lock height to avoid layout jump while typing.
+    h.style.minHeight = h.offsetHeight + "px";
+    h.innerHTML = "";
+    var caret = document.createElement("span");
+    caret.className = "tw-caret";
+    h.appendChild(caret);
+    var ti = 0;
+    function nextToken() {
+      if (ti >= tokens.length) { setTimeout(function () { caret.remove(); h.style.minHeight = ""; }, 650); return; }
+      var tok = tokens[ti++];
+      if (tok.t === "br") { h.insertBefore(document.createElement("br"), caret); return nextToken(); }
+      var span = document.createElement("span");
+      if (tok.cls) span.className = tok.cls;
+      h.insertBefore(span, caret);
+      var chars = tok.s.split(""), ci = 0;
+      (function typeChar() {
+        if (ci >= chars.length) return nextToken();
+        span.textContent += chars[ci++];
+        setTimeout(typeChar, 26);
+      })();
+    }
+    nextToken();
+  }
+
   /* ---------- HERO ---------- */
   if (D.hero) {
     var h = D.hero;
@@ -37,6 +82,14 @@
     var p = $("#heroPrimary"), s = $("#heroSecondary");
     p.textContent = h.primaryCta.label; p.href = h.primaryCta.href;
     s.textContent = h.secondaryCta.label; s.href = h.secondaryCta.href;
+
+    // Cinematic movie-title rise: split hero title into words that lift up.
+    if (!prefersReduce) {
+      splitWords($("#heroLead"), false);
+      splitWords($("#heroAccent"), true);
+      var heroTitleEl = document.querySelector(".hero__title");
+      setTimeout(function () { if (heroTitleEl) heroTitleEl.classList.add("animate"); }, 120);
+    }
   }
 
   /* ---------- MARQUEE ---------- */
@@ -226,4 +279,14 @@
     stagger($(sel));
   });
   requestAnimationFrame(observeReveals);
+
+  /* ---------- CINEMATIC: typewriter on section headings ---------- */
+  if (!prefersReduce) {
+    var twObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { typewriter(en.target); obs.unobserve(en.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll("main h2.h-lg").forEach(function (h) { twObserver.observe(h); });
+  }
 })();
